@@ -6,7 +6,7 @@ gem 'twitter', '>= 5.9.0'
 gem 'lastfm'
 gem 'goodreads'
 
-gem 'mysql2'
+gem 'pg'
 gem "sinatra-activerecord"
 gem "rake"
 gem "dotenv"

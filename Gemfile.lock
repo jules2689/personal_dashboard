@@ -92,7 +92,6 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.4.2)
     naught (1.1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -101,6 +100,7 @@ GEM
     oauth (0.5.0)
     parser (2.3.0.6)
       ast (~> 2.2)
+    pg (0.18.4)
     powerpack (0.1.1)
     puma (2.16.0)
     rack (1.5.5)
@@ -186,7 +186,7 @@ DEPENDENCIES
   dotenv
   goodreads
   lastfm
-  mysql2
+  pg
   puma
   rake
   rubocop
