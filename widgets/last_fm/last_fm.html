@@ -1,0 +1,14 @@
+<h5 class="last_fm_title" data-bind="title"></h5>
+<ul class="last_fm">
+  <li class="song clearfix" data-foreach-song="songs">
+    <a data-bind-href="song.url" target="_blank">
+      <img data-bind-src="song.cover"/>
+      <div class="content">
+        <span class="artist" data-bind="song.artist"></span> -
+        <span class="name" data-bind="song.name"></span>
+        <small>(<span class="playCount" data-bind="song.playCount"></span>)</small>
+      </div>
+    </a>
+  </li>
+</ul>
+<p class="updated-at" data-bind="updatedAtMessage"></p>

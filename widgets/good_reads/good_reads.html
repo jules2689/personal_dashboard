@@ -1,0 +1,13 @@
+<h5 class="good_reads_title" data-bind="title"></h5>
+<ul class="good_reads">
+  <li class="book clearfix" data-foreach-book="books">
+    <a data-bind-href="book.url" target="_blank">
+      <img data-bind-src="book.cover"/>
+      <div class="content">
+        <span class="name" data-bind="book.name"></span></br>
+        <small><span class="author" data-bind="book.author"></span></small>
+      </div>
+    </a>
+  </li>
+</ul>
+<p class="updated-at" data-bind="updatedAtMessage"></p>

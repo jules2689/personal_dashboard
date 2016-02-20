@@ -1,0 +1,17 @@
+.title {
+    left: 0;
+    right: 0;
+    top: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.treeMap {
+    .node {
+        overflow: hidden;
+        position: absolute;
+        div {
+            padding: 6px 4%;
+        }
+    }
+}

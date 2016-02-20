@@ -1,0 +1,20 @@
+<% content_for :title do %>Music<% end %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="last_fm_top_tracks" style="background-color:#81b71a;" data-view="LastFM" data-title="Top tracks played last week"></div>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="last_fm_top_artists" data-view="TreeMap" data-width="301" data-height="250" style="background-color:#81b71a;" data-title="Top artists"></div>
+    </li>
+
+    <li data-row="1" data-col="3" data-sizex="2" data-sizey="2">
+      <div data-id="last_fm_top_tags" data-view="TreeMap" data-width="611" data-height="600" style="background-color:#81b71a;" data-title="Top tags"></div>
+    </li>
+
+    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="last_fm_total_played" style="background-color:#81b71a;" data-view="Text" data-title="Total Music Played" data-moreinfo="In the past week"></div>
+    </li>
+  </ul>
+</div>
