@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'dashing'
+gem 'uglifier'
 
 gem 'twitter', '>= 5.9.0'
 gem 'lastfm'

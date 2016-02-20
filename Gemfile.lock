@@ -167,6 +167,9 @@ GEM
       simple_oauth (~> 0.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uglifier (2.7.2)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
@@ -192,6 +195,7 @@ DEPENDENCIES
   rubocop
   sinatra-activerecord
   twitter (>= 5.9.0)
+  uglifier
 
 BUNDLED WITH
    1.11.2
