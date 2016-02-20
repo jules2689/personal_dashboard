@@ -1,6 +1,6 @@
 require 'goodreads'
 
-module Helpers
+module JobHelpers
   class GoodReadsJob
     def initialize(args, logger)
       @user_id = args[:user_id]

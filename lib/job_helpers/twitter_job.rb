@@ -1,6 +1,6 @@
 require 'twitter'
 
-module Helpers
+module JobHelpers
   class TwitterJob
     def initialize(args, logger)
       @consumer_key = args[:consumer_key]

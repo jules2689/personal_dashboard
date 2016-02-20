@@ -1,5 +1,3 @@
-require_relative 'helpers/twitter_job'
-
 class TwitterJob < Job
   @period = '1d'
 
@@ -13,7 +11,7 @@ class TwitterJob < Job
   def self.perform_job
     super
     begin
-      twitter = Helpers::TwitterJob.new(auth_hash, logger)
+      twitter = JobHelpers::TwitterJob.new(auth_hash, logger)
       twitter.record_twitter_followers
       send_event('twitter_followers_count', twitter.twitter_follower_hash)
     rescue Twitter::Error => e

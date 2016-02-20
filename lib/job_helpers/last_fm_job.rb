@@ -1,6 +1,6 @@
 require 'lastfm'
 
-module Helpers
+module JobHelpers
   class LastFMJob
     def initialize(args, logger)
       @user_name = args[:user_name]

@@ -1,5 +1,3 @@
-require_relative 'helpers/good_reads_job'
-
 class GoodReadsJob < Job
   @period = '1d'
 
@@ -11,7 +9,7 @@ class GoodReadsJob < Job
 
   def self.perform_job
     super
-    good_read_job = Helpers::GoodReadsJob.new(auth_hash, logger)
+    good_read_job = JobHelpers::GoodReadsJob.new(auth_hash, logger)
     books = good_read_job.shelf("read").books
     good_read_job.save_books_and_authors(books)
 

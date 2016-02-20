@@ -1,5 +1,3 @@
-require_relative 'helpers/last_fm_job'
-
 class LastFMJob < Job
   @period = '7d'
 
@@ -12,7 +10,7 @@ class LastFMJob < Job
 
   def self.perform_job
     super
-    last_fm = Helpers::LastFMJob.new(auth_hash, logger)
+    last_fm = JobHelpers::LastFMJob.new(auth_hash, logger)
     last_fm.save_top_tracks
 
     send_event('last_fm_top_tracks',   songs: last_fm.extract_top_tracks)
