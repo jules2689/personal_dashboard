@@ -20,6 +20,21 @@ GEM
     backports (3.6.8)
     buftok (0.2.0)
     builder (3.2.2)
+    capistrano (3.4.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-dotenv-tasks (0.1.2)
+      capistrano (~> 3.0)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
+    capistrano3-puma (1.2.1)
+      capistrano (~> 3.0)
+      puma (>= 2.6)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -79,11 +94,15 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.4.2)
     naught (1.1.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.0.2)
     netrc (0.11.0)
     oauth (0.5.0)
     parser (2.3.0.6)
       ast (~> 2.2)
     powerpack (0.1.1)
+    puma (2.16.0)
     rack (1.5.5)
     rack-protection (1.5.3)
       rack
@@ -125,6 +144,9 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sshkit (1.8.1)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -155,11 +177,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capistrano
+  capistrano-bundler
+  capistrano-dotenv-tasks
+  capistrano-rvm
+  capistrano3-puma
   dashing
   dotenv
   goodreads
   lastfm
   mysql2
+  puma
   rake
   rubocop
   sinatra-activerecord

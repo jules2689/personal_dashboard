@@ -10,4 +10,13 @@ gem 'mysql2'
 gem "sinatra-activerecord"
 gem "rake"
 gem "dotenv"
-gem "rubocop", group: :development
+gem 'puma'
+
+group :development do
+  gem 'rubocop', require: false
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+  gem 'capistrano-dotenv-tasks'
+end
