@@ -4,8 +4,6 @@ server '159.203.16.242', port: 22, roles: [:web, :app, :db], primary: true
 set :repo_url,        'https://github.com/jules2689/personal_dashboard.git'
 set :application,     'personal_dashboard'
 set :user,            'deploy'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
 
 # Don't change these unless you know what you're doing
 set :pty,             true
@@ -13,25 +11,19 @@ set :use_sudo,        false
 set :stage,           :production
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
-set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
-set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
-set :puma_access_log, "#{release_path}/log/puma.error.log"
-set :puma_error_log,  "#{release_path}/log/puma.access.log"
+set :thin_config_path, -> { "#{shared_path}/config/thin.yml" }
 set :ssh_options,     forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub)
-set :puma_preload_app, true
-set :puma_worker_timeout, nil
-set :puma_init_active_record, true # Change to false when not using ActiveRecord
+
 
 set :default_env, { 
   'RACK_ENV' => 'production'
 }
 
-set :linked_files, %w{.env}
+set :linked_files, %w{.env config/thin.yml}
 set :linked_dirs,  %w{log}
 
-namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
+namespace :thin do
+  desc 'Create Directories for Thin Pids and Socket'
   task :make_dirs do
     on roles(:app) do
       execute "mkdir #{shared_path}/tmp/sockets -p"
@@ -39,7 +31,7 @@ namespace :puma do
     end
   end
 
-  before :start, :make_dirs
+  before :start, :upload_config
 end
 
 namespace :deploy do
@@ -57,7 +49,7 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      before 'deploy:restart', 'puma:start'
+      before 'deploy:restart', 'thin:start'
       invoke 'deploy'
     end
   end
@@ -65,7 +57,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
+      invoke 'thin:restart'
     end
   end
 
@@ -91,8 +83,6 @@ namespace :deploy do
   task :start_dashing do  
     on roles(:app) do
       within current_path do
-        pid_cmd = "ps aux | grep thin | grep -v grep | awk '{print $2}'"
-        execute "kill $(#{pid_cmd})" # Kill current server
         execute :bundle, :exec, "dashing start -d"
       end
     end
@@ -105,7 +95,3 @@ namespace :deploy do
   after :finishing,    :restart
   after :finishing,    :start_dashing
 end
-
-# ps aux | grep puma    # Get puma pid
-# kill -s SIGUSR2 pid   # Restart puma
-# kill -s SIGTERM pid   # Stop puma

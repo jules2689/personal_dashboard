@@ -18,6 +18,6 @@ group :development do
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  gem 'capistrano-thin', '~> 1.2.0'
   gem 'capistrano-dotenv-tasks'
 end
