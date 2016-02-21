@@ -31,7 +31,7 @@ set :puma_init_active_record, true # Change to false when not using ActiveRecord
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{.env}
 set :linked_dirs,  %w{log}
 
 namespace :puma do
@@ -82,10 +82,20 @@ namespace :deploy do
     end
   end  
 
+  desc "Starts Dashing"  
+  task :start_dashing do  
+    on roles(:app) do
+      within current_path do
+        execute "dashing start"
+      end
+    end
+  end  
+
   before :starting,    :check_revision
   before :finishing,   :precompile_assets
   after :finishing,    :cleanup
   after :finishing,    :restart
+  after :finishing,    :start_dashing
 end
 
 # ps aux | grep puma    # Get puma pid
