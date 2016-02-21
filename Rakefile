@@ -20,12 +20,12 @@ namespace :assets do
   desc 'Clean assets folder'
   task :clean do
     puts '*** Cleaning compiled assets'
-    if File.exist?(File.join(outpath_prefix, 'application.min.js'))
-      FileUtils.rm File.join(outpath_prefix, 'application.min.js')
+    if File.exist?(File.join(outpath_prefix, 'application.js'))
+      FileUtils.rm File.join(outpath_prefix, 'application.js')
       puts '**** JS Removed'
     end
-    if File.exist?(File.join(outpath_prefix, 'application.min.css'))
-      FileUtils.rm File.join(outpath_prefix, 'application.min.css')
+    if File.exist?(File.join(outpath_prefix, 'application.css'))
+      FileUtils.rm File.join(outpath_prefix, 'application.css')
       puts '**** CSS Removed'
     end
     puts '*** Successfully cleaned assets'
@@ -37,7 +37,7 @@ namespace :assets do
     sprockets = Sinatra::Application.settings.sprockets
     sprockets.js_compressor = Uglifier.new(:mangle => false)
     asset = sprockets['application.js']
-    outfile = Pathname.new(outpath_prefix).join('application.min.js')
+    outfile = Pathname.new(outpath_prefix).join('application.js')
     asset.write_to(outfile)
     puts "*** Successfully compiled js assets"
   end
@@ -47,7 +47,7 @@ namespace :assets do
     puts '*** Compiling css assets'
     sprockets.css_compressor = :scss
     asset = sprockets['application.css']
-    outfile = Pathname.new(outpath_prefix).join('application.min.css')
+    outfile = Pathname.new(outpath_prefix).join('application.css')
     asset.write_to(outfile)
     puts "*** Successfully compiled css assets"
   end
