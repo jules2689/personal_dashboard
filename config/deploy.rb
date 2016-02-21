@@ -76,7 +76,9 @@ namespace :deploy do
   desc "Precompile assets to public/assets"  
   task :precompile_assets do  
     on roles(:app) do
-      execute :rake, "assets:precompile"
+      within current_path do
+        execute :rake, "assets:precompile"
+      end
     end
   end  
 
