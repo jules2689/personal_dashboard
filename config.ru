@@ -6,7 +6,7 @@ Dir["#{File.dirname(__FILE__)}/models/*.rb"].each { |f| require(f) }
 require 'dashing'
 
 configure do
-  set :auth_token, 'YOUR_AUTH_TOKEN'
+  set :auth_token, ENV["AUTH_TOKEN"]
   set :default_dashboard, 'overview'
 
   helpers do
@@ -21,4 +21,4 @@ map Sinatra::Application.assets_prefix do
   run Sinatra::Application.sprockets
 end
 
-run Sinatra::Application
+run Sinatra::Applicationbundle 

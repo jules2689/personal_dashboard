@@ -1,7 +1,8 @@
 require "sinatra/activerecord/rake"
 require 'yaml'
 
-db = YAML.load_file('config/database.yml')["development"]
+environment = ENV['RACK_ENV'] || 'development'
+db = YAML.load_file('config/database.yml')[environment]
 ActiveRecord::Base.establish_connection(db)
 
 require 'bundler'
@@ -20,7 +21,7 @@ namespace :assets do
   desc 'Clean assets folder'
   task :clean do
     puts '*** Cleaning compiled assets'
-    FileUtils.rm_rf File.join(outpath_prefix)
+    FileUtils.rm_rf  File.join(outpath_prefix)
     FileUtils.mkdir File.join(outpath_prefix)
     puts '*** Successfully cleaned assets'
   end

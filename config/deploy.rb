@@ -80,19 +80,29 @@ namespace :deploy do
         execute :rake, "assets:precompile"
       end
     end
-  end  
+  end
+
+  desc "Migrates the DB"  
+  task :migrate_db do  
+    on roles(:app) do
+      within current_path do
+        execute "RACK_ENV=production bundle exec rake db:migrate"
+      end
+    end
+  end   
 
   desc "Starts Dashing"  
   task :start_dashing do  
     on roles(:app) do
       within current_path do
-        execute "dashing start"
+        execute "RACK_ENV=production bundle exec dashing start"
       end
     end
   end  
 
   before :starting,    :check_revision
   before :finishing,   :precompile_assets
+  before :finishing,   :migrate_db
   after :finishing,    :cleanup
   after :finishing,    :restart
   after :finishing,    :start_dashing
