@@ -13,6 +13,7 @@ class GoodReadsJob < Job
     books = good_read_job.shelf("read").books
     good_read_job.save_books_and_authors(books)
 
+    logger.info "Sending event to good_reads_recent_books"
     send_event('good_reads_recent_books', books: good_read_job.book_hashes(books))
   end
 end

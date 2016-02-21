@@ -13,6 +13,7 @@ class TwitterJob < Job
     begin
       twitter = JobHelpers::TwitterJob.new(auth_hash, logger)
       twitter.record_twitter_followers
+      logger.info("Sending event to twitter_followers_count")
       send_event('twitter_followers_count', twitter.twitter_follower_hash)
     rescue Twitter::Error => e
       log_error e
