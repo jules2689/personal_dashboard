@@ -91,6 +91,8 @@ namespace :deploy do
   task :start_dashing do  
     on roles(:app) do
       within current_path do
+        pid_path = "#{release_path}/tmp/pids/thin.pid"
+        execute "kill $(cat #{pid_path})" # Kill current server
         execute :bundle, :exec, "dashing start -d"
       end
     end

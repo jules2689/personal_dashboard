@@ -70,7 +70,8 @@ module JobHelpers
 
       # Fetch Tags for Top Tracks
       @logger.info "Fetching Tags for #{@top_tracks.count} tracks from Last FM"
-      @top_tracks.each do |track|
+      @top_tracks.each_with_index do |track, idx|
+        @logger.info "Fetching Tags #{idx + 1} / #{@top_tracks.count}"
         track["tags"] = tags_for_track(track)
       end
 
