@@ -23,14 +23,10 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true # Change to false when not using ActiveRecord
 
-## Defaults:
-# set :scm,           :git
-# set :branch,        :master
-# set :format,        :pretty
-# set :log_level,     :debug
-# set :keep_releases, 5
+set :default_env, { 
+  'RACK_ENV' => 'production'
+}
 
-## Linked Files & Directories (Default None):
 set :linked_files, %w{.env}
 set :linked_dirs,  %w{log}
 
@@ -86,7 +82,7 @@ namespace :deploy do
   task :migrate_db do  
     on roles(:app) do
       within current_path do
-        execute "RACK_ENV=production bundle exec rake db:migrate"
+        execute :rake, 'db:migrate'
       end
     end
   end   
@@ -95,7 +91,7 @@ namespace :deploy do
   task :start_dashing do  
     on roles(:app) do
       within current_path do
-        execute "RACK_ENV=production bundle exec dashing start"
+        execute "bundle exec dashing start"
       end
     end
   end  
