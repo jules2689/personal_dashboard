@@ -13,21 +13,15 @@ namespace :assets do
   outpath_prefix = File.join(root, 'public', Sinatra::Application.settings.assets_prefix)
 
   desc 'Compile assets'
-  task :precompile => [:clean, :compile_js, :compile_css] do
+  task :precompile => [:clean, :compile_js, :compile_css, :move_fonts] do
     puts '*** Sucessfuly Precompiled'
   end
 
   desc 'Clean assets folder'
   task :clean do
     puts '*** Cleaning compiled assets'
-    if File.exist?(File.join(outpath_prefix, 'application.js'))
-      FileUtils.rm File.join(outpath_prefix, 'application.js')
-      puts '**** JS Removed'
-    end
-    if File.exist?(File.join(outpath_prefix, 'application.css'))
-      FileUtils.rm File.join(outpath_prefix, 'application.css')
-      puts '**** CSS Removed'
-    end
+    FileUtils.rm_rf File.join(outpath_prefix)
+    FileUtils.mkdir File.join(outpath_prefix)
     puts '*** Successfully cleaned assets'
   end
 
@@ -35,7 +29,7 @@ namespace :assets do
   task :compile_js do
     puts '*** Compiling js assets'
     sprockets = Sinatra::Application.settings.sprockets
-    sprockets.js_compressor = Uglifier.new(:mangle => false)
+    sprockets.js_compressor = Uglifier.new(mangle: false)
     asset = sprockets['application.js']
     outfile = Pathname.new(outpath_prefix).join('application.js')
     asset.write_to(outfile)
@@ -50,5 +44,14 @@ namespace :assets do
     outfile = Pathname.new(outpath_prefix).join('application.css')
     asset.write_to(outfile)
     puts "*** Successfully compiled css assets"
+  end
+
+  desc 'Copy Font assets for production'
+  task :move_fonts do
+    puts '*** Moving Fonts'
+    Dir[File.join(root, 'assets', 'fonts','*')].each do |font|
+      out_path = Pathname.new(outpath_prefix).join(File.basename(font))
+      FileUtils.cp font, out_path
+    end
   end
 end
