@@ -91,7 +91,7 @@ namespace :deploy do
   task :start_dashing do  
     on roles(:app) do
       within current_path do
-        execute "bundle exec dashing start"
+        execute :bundle, :exec, "dashing start"
       end
     end
   end  
