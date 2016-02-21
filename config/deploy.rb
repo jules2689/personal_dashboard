@@ -31,7 +31,7 @@ namespace :thin do
     end
   end
 
-  before :start, :upload_config
+  before :start, :make_dirs
 end
 
 namespace :deploy do
