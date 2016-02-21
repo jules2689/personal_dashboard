@@ -19,7 +19,7 @@ set :default_env, {
   'RACK_ENV' => 'production'
 }
 
-set :linked_files, %w{.env config/thin.yml}
+set :linked_files, %w{.env config/thin.yml history.yml}
 set :linked_dirs,  %w{log}
 
 namespace :thin do

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'dashing'
+gem 'dashing', git: "git@github.com:Shopify/dashing.git", branch: "save-history-on-send-event"
 gem 'uglifier'
 
 gem 'twitter', '>= 5.9.0'
@@ -8,9 +8,9 @@ gem 'lastfm'
 gem 'goodreads'
 
 gem 'pg'
-gem "sinatra-activerecord"
-gem "rake"
-gem "dotenv"
+gem 'sinatra-activerecord'
+gem 'rake'
+gem 'dotenv'
 gem 'puma'
 
 group :development do
