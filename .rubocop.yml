@@ -39,6 +39,8 @@ Style/StringLiterals:
 
 Metrics/LineLength:
   Max: 120
+  Exclude: 
+   - db/schema.rb
 
 Metrics/ClassLength:
   Enabled: false

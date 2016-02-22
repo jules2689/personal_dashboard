@@ -11,7 +11,7 @@ class CreateStats < ActiveRecord::Migration
       t.string :remote_user_id, index: true
       t.string :first_name
       t.string :last_meditated, index: true
-      t.timestamps  null: false
+      t.timestamps null: false
     end
   end
 end

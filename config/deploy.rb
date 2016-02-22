@@ -12,15 +12,12 @@ set :stage,           :production
 set :deploy_via,      :remote_cache
 set :deploy_to,       "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :thin_config_path, -> { "#{shared_path}/config/thin.yml" }
-set :ssh_options,     forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub)
+set :ssh_options, forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub)
 
+set :default_env, 'RACK_ENV' => 'production'
 
-set :default_env, { 
-  'RACK_ENV' => 'production'
-}
-
-set :linked_files, %w{.env config/thin.yml history.yml}
-set :linked_dirs,  %w{log}
+set :linked_files, %w(.env config/thin.yml history.yml)
+set :linked_dirs,  %w(log)
 
 namespace :thin do
   desc 'Create Directories for Thin Pids and Socket'
@@ -61,8 +58,8 @@ namespace :deploy do
     end
   end
 
-  desc "Precompile assets to public/assets"  
-  task :precompile_assets do  
+  desc "Precompile assets to public/assets"
+  task :precompile_assets do
     on roles(:app) do
       within current_path do
         execute :rake, "assets:precompile"
@@ -70,23 +67,23 @@ namespace :deploy do
     end
   end
 
-  desc "Migrates the DB"  
-  task :migrate_db do  
+  desc "Migrates the DB"
+  task :migrate_db do
     on roles(:app) do
       within current_path do
         execute :rake, 'db:migrate'
       end
     end
-  end   
+  end
 
-  desc "Starts Dashing"  
-  task :start_dashing do  
+  desc "Starts Dashing"
+  task :start_dashing do
     on roles(:app) do
       within current_path do
         execute :bundle, :exec, "dashing start -d"
       end
     end
-  end  
+  end
 
   before :starting,    :check_revision
   before :finishing,   :precompile_assets

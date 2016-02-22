@@ -18,13 +18,13 @@ class HeadspaceJob < Job
 
     logger.info("Sending event to headspace_number_sessions")
     send_event('headspace_number_sessions', progress_hash["num_sessions"])
-    
+
     logger.info("Sending event to headspace_total_time")
-    send_event('headspace_total_time',  progress_hash["number_of_minutes"])
+    send_event('headspace_total_time', progress_hash["number_of_minutes"])
 
     logger.info("Sending event to headspace_current_streak")
     send_event('headspace_current_streak', progress_hash["current_streak"])
-    
+
     logger.info("Sending event to headspace_longest_streak")
     send_event('headspace_longest_streak', progress_hash["longest_streak"])
 

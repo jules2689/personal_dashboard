@@ -14,15 +14,15 @@ class LastFMJob < Job
     last_fm.save_top_tracks
 
     logger.info("Sending event to last_fm_top_tracks")
-    send_event('last_fm_top_tracks',   songs: last_fm.extract_top_tracks)
-    
+    send_event('last_fm_top_tracks', songs: last_fm.extract_top_tracks)
+
     logger.info("Sending event to last_fm_total_played")
     send_event('last_fm_total_played', text: last_fm.extract_total_played)
-    
+
     logger.info("Sending event to last_fm_top_artists")
     send_event('last_fm_top_artists',  name: "Top Artists",
                                        children: last_fm.extract_top_artists)
-    
+
     logger.info("Sending event to last_fm_top_tags")
     send_event('last_fm_top_tags',     name: "Top Tags",
                                        children: last_fm.extract_top_tags)

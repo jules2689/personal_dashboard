@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20160221190257) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -177,5 +176,4 @@ ActiveRecord::Schema.define(version: 20160221190257) do
 
   add_index "twitter_counts", ["created_at"], name: "index_twitter_counts_on_created_at", using: :btree
   add_index "twitter_counts", ["updated_at"], name: "index_twitter_counts_on_updated_at", using: :btree
-
 end

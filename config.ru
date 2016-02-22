@@ -18,8 +18,10 @@ configure do
     end
 
     def authorized?
-      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      @auth.provided? && @auth.basic? && @auth.credentials && @auth.credentials == [ENV["HTTP_USER"], ENV["HTTP_PASSWORD"]]
+      @auth ||= Rack::Auth::Basic::Request.new(request.env)
+      credentials = [ENV["HTTP_USER"], ENV["HTTP_PASSWORD"]]
+      @auth.provided? && @auth.basic? &&
+        @auth.credentials && @auth.credentials == credentials
     end
   end
 end

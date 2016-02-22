@@ -71,7 +71,7 @@ module JobHelpers
         groups = HeadspacePackGroup.where(remote_pack_group_id: ids)
         pack_groups.each_with_index do |group_hash, idx|
           group = groups[idx] || HeadspacePackGroup.new
-          group_hash["remote_pack_group_id"] = group_hash.delete("pack_group_id") 
+          group_hash["remote_pack_group_id"] = group_hash.delete("pack_group_id")
           group.update(group_hash)
           stat.headspace_pack_groups << group
           group.save
@@ -86,8 +86,8 @@ module JobHelpers
     def sign_in
       @logger.info("Signing into Headspace")
       mechanize.get('http://headspace.com') do |page|
-        login_page = mechanize.click(page.link_with(:text => /LOGIN/))
-        login_page.form_with(:action => '/login/check') do |f|
+        login_page = mechanize.click(page.link_with(text: /LOGIN/))
+        login_page.form_with(action: '/login/check') do |f|
           f._username = @user_name
           f._password = @password
         end.submit
@@ -116,6 +116,5 @@ module JobHelpers
       return h unless h.is_a? Hash
       h.map { |k, v| [ActiveSupport::Inflector.underscore(k), underscorize_hash(v)] }.to_h
     end
-
   end
 end

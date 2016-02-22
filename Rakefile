@@ -14,14 +14,14 @@ namespace :assets do
   outpath_prefix = File.join(root, 'public', Sinatra::Application.settings.assets_prefix)
 
   desc 'Compile assets'
-  task :precompile => [:clean, :compile_js, :compile_css, :move_fonts] do
+  task precompile: [:clean, :compile_js, :compile_css, :move_fonts] do
     puts '*** Sucessfuly Precompiled'
   end
 
   desc 'Clean assets folder'
   task :clean do
     puts '*** Cleaning compiled assets'
-    FileUtils.rm_rf  File.join(outpath_prefix)
+    FileUtils.rm_rf File.join(outpath_prefix)
     FileUtils.mkdir File.join(outpath_prefix)
     puts '*** Successfully cleaned assets'
   end
@@ -50,7 +50,7 @@ namespace :assets do
   desc 'Copy Font assets for production'
   task :move_fonts do
     puts '*** Moving Fonts'
-    Dir[File.join(root, 'assets', 'fonts','*')].each do |font|
+    Dir[File.join(root, 'assets', 'fonts', '*')].each do |font|
       out_path = Pathname.new(outpath_prefix).join(File.basename(font))
       FileUtils.cp font, out_path
     end

@@ -14,7 +14,7 @@ class CreatePackGroups < ActiveRecord::Migration
       t.string :xhdpi_icon_url
       t.string :xxhdpi_icon_url
       t.references :headspace_stat, index: true
-      t.timestamps  null: false
+      t.timestamps null: false
     end
   end
 end
