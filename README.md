@@ -13,7 +13,10 @@ Looks at top tracks, artists, time listened in a week, and top tags from last fm
 Currently grabs your recently read books
 
 #### Social Media
-Current supported tracking the number of twitter followers over time.
+Current supported tracking the number of Twitter followers over time.
+
+#### Meditation
+Scrapes Headspace for your profile and pulls in the information
 
 Setup
 ---
