@@ -29,4 +29,4 @@ class LastFMJob < Job
   end
 end
 
-LastFMJob.run
+# LastFMJob.run

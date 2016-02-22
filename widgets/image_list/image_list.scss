@@ -1,14 +1,20 @@
-.good_reads_title {
+.image_list_title {
   margin-bottom: 10px;
 }
 
-.good_reads {
-  .book {
+.image_list {
+  .image_list_item {
     margin: 12px;
 
-    img {
-      width: 30px;
+    .image_list_image {
+      height: 50px;
+      line-height: 50px;
       float: left;
+
+      img {
+        height: 40px;
+        vertical-align: middle;
+      }
     }
 
     .content {
@@ -17,7 +23,7 @@
       margin: 0;
       font-size: 0.8em;
       padding: 3px;
-      padding-left: 5px;
+      padding-left: 15px;
     }
   }
 }

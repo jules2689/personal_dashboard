@@ -1,0 +1,13 @@
+<h5 class="image_list_title" data-bind="title"></h5>
+<ul class="image_list">
+  <li class="image_list_item clearfix" data-foreach-item="items">
+    <a data-bind-href="item.url" target="_blank">
+      <div class="image_list_image"><img data-bind-src="item.image"/></div>
+      <div class="content">
+        <span class="name" data-bind="item.name"></span></br>
+        <small><span class="subtext" data-bind="item.subtext"></span></small>
+      </div>
+    </a>
+  </li>
+</ul>
+<p class="updated-at" data-bind="updatedAtMessage"></p>

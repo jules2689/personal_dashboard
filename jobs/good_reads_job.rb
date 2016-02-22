@@ -14,7 +14,7 @@ class GoodReadsJob < Job
     good_read_job.save_books_and_authors(books)
 
     logger.info "Sending event to good_reads_recent_books"
-    send_event('good_reads_recent_books', books: good_read_job.book_hashes(books))
+    send_event('good_reads_recent_books', items: good_read_job.book_hashes(books))
   end
 end
 

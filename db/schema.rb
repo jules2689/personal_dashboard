@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220143905) do
+ActiveRecord::Schema.define(version: 20160221190257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,45 @@ ActiveRecord::Schema.define(version: 20160220143905) do
   end
 
   add_index "books", ["remote_id"], name: "index_books_on_remote_id", using: :btree
+
+  create_table "headspace_pack_groups", force: :cascade do |t|
+    t.boolean  "is_elective"
+    t.integer  "total_packs"
+    t.integer  "no_of_packs"
+    t.string   "colour"
+    t.string   "remote_pack_group_id"
+    t.string   "icon_url"
+    t.string   "name"
+    t.string   "ldpi_icon_url"
+    t.string   "mdpi_icon_url"
+    t.string   "hdpi_icon_url"
+    t.string   "xhdpi_icon_url"
+    t.string   "xxhdpi_icon_url"
+    t.integer  "headspace_stat_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "headspace_pack_groups", ["headspace_stat_id"], name: "index_headspace_pack_groups_on_headspace_stat_id", using: :btree
+  add_index "headspace_pack_groups", ["remote_pack_group_id"], name: "index_headspace_pack_groups_on_remote_pack_group_id", using: :btree
+
+  create_table "headspace_stats", force: :cascade do |t|
+    t.integer  "number_of_minutes"
+    t.integer  "current_run_streak"
+    t.integer  "longest_run_streak"
+    t.integer  "num_sessions"
+    t.integer  "avg_session_length"
+    t.string   "display_name"
+    t.string   "last_name"
+    t.string   "remote_user_id"
+    t.string   "first_name"
+    t.string   "last_meditated"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "headspace_stats", ["last_meditated"], name: "index_headspace_stats_on_last_meditated", using: :btree
+  add_index "headspace_stats", ["remote_user_id"], name: "index_headspace_stats_on_remote_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "size"

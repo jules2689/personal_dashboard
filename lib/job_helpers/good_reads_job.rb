@@ -12,12 +12,12 @@ module JobHelpers
     def book_hashes(books)
       books.collect do |book|
         book = book.book
-        authors = book.authors.collect { |_a, v| v.name }.join(", ")
+        author_names = book.authors.collect { |_a, v| v.name }.join(", ")
         {
           name: book.title,
-          cover: book.image_url,
+          image: book.image_url,
           url: book.link,
-          author: authors
+          subtext: author_names
         }
       end.take(6)
     end

@@ -6,6 +6,7 @@ gem 'uglifier'
 gem 'twitter', '>= 5.9.0'
 gem 'lastfm'
 gem 'goodreads'
+gem 'mechanize'
 
 gem 'pg'
 gem 'sinatra-activerecord'

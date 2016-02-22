@@ -3,6 +3,7 @@ Personal Dashboard
 A simple way to track stats about yourself
 
 ![Music Dashboard](https://cloud.githubusercontent.com/assets/3074765/13199776/b8215d12-d7fc-11e5-9ec1-a45d7379259c.png)
+![Personal Dashboard](https://cloud.githubusercontent.com/assets/3074765/13207152/157d2342-d8d9-11e5-9d75-64c558adb08b.png)
 
 #### LastFM/Spotify
 Spotify is supported through scrobbling to LastFM.
