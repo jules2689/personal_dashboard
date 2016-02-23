@@ -12,8 +12,8 @@ class Dashing.Graph extends Dashing.Widget
     width = (Dashing.widget_base_dimensions[0] * container.data("sizex")) + Dashing.widget_margins[0] * 2 * (container.data("sizex") - 1)
     height = (Dashing.widget_base_dimensions[1] * container.data("sizey"))
 
-    min_value = Math.max [0, @get("minValue") - 100]
-    max_value = Math.min [@get("maxValue") * 2, @get("maxValue") + 100]
+    min_value = Math.max 0, @get("minValue") - 100
+    max_value = Math.min @get("maxValue") * 2, @get("maxValue") + 100
 
     @graph = new Rickshaw.Graph(
       element: @node

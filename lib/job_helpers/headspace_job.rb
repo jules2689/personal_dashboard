@@ -40,7 +40,7 @@ module JobHelpers
       groups.collect do |group|
         {
           name: group.name,
-          image: group.xxhdpi_icon_url,
+          image: group.https_xxhdpi_icon_url,
           subtext: "#{group.no_of_packs} / #{group.total_packs}"
         }
       end
