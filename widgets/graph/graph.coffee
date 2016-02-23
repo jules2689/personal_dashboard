@@ -17,7 +17,7 @@ class Dashing.Graph extends Dashing.Widget
       height: height
       renderer: @get("graphtype")
       max: @get("maxValue") + 100
-      min: @get("minValue") - 100
+      min: Math.max [0, @get("minValue") - 100]
       series: [
         {
           color: "#fff",
