@@ -79,8 +79,13 @@ module JobHelpers
     end
 
     def tags_for_track(track)
-      info = last_fm.track.get_info(artist: track["artist"]["name"], track: track["name"])
-      info["toptags"]["tag"]
+      begin
+        info = last_fm.track.get_info(artist: track["artist"]["name"], track: track["name"])
+        info["toptags"]["tag"]
+      rescue => e
+        @logger.error "[#{track["name"]} by #{track["artist"]["name"]}] #{e.class} => #{e.message}"
+        nil
+      end
     end
 
     def last_fm
