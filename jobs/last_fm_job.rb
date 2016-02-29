@@ -1,5 +1,5 @@
 class LastFMJob < Job
-  @period = '7d'
+  @period = '6h'
 
   def self.auth_hash
     { user_name: ENV["LAST_FM_USER_NAME"],

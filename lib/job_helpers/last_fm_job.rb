@@ -58,7 +58,7 @@ module JobHelpers
       @logger.info "Fetching Top Tracks from Last FM"
       until tracks_batch.nil?
         tracks_batch = last_fm.user.get_top_tracks(user: @user_name,
-                                                   period: "7days",
+                                                   period: "7day",
                                                    page: page,
                                                    limit: 100)
         unless tracks_batch.nil?
