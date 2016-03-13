@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'dashing', git: "git@github.com:Shopify/dashing.git", branch: "save-history-on-send-event"
-gem 'uglifier'
 
 gem 'twitter', '>= 5.9.0'
 gem 'lastfm'
@@ -13,6 +12,7 @@ gem 'sinatra-activerecord'
 gem 'rake'
 gem 'dotenv'
 gem 'puma'
+gem 'uglifier'
 
 group :development do
   gem 'rubocop', require: false
