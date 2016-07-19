@@ -56,3 +56,35 @@ namespace :assets do
     end
   end
 end
+
+namespace :ssl do
+  desc "Renew SSL certificates"
+  task :renew do
+    require 'le_ssl'
+    require 'le_ssl/manager'
+
+    email = 'julian@jnadeau.ca'
+    domain = 'dashboard.jnadeau.ca'
+
+    base_path = '/etc/letsencrypt/live/dashboard.jnadeau.ca'
+    private_key = File.read("/etc/letsencrypt/live/dashboard.jnadeau.ca/privkey.pem")
+    manager = LeSSL::Manager.new(
+      email: email,
+      agree_terms: true,
+      private_key: private_key,
+      key_paths: {
+        priv_key: File.join(base_path, 'privkey.pem'),
+        cert: File.join(base_path, 'cert.pem'),
+        chain: File.join(base_path, 'chain.pem'),
+        full_chain: File.join(base_path, 'fullchain.pem')
+      },
+      public_path: '/home/deploy/apps/personal_dashboard/current/public'
+    )
+
+    puts "Authorizing for domain #{domain}"
+    manager.authorize_for_domain(domain)
+
+    puts "Requesting certificate for #{domain}"
+    manager.request_certificate(domain)
+  end
+end

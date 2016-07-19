@@ -13,6 +13,7 @@ gem 'rake'
 gem 'dotenv'
 gem 'puma'
 gem 'uglifier'
+gem 'le_ssl', git: 'git@github.com:jules2689/LeSSL.git'
 
 group :development do
   gem 'rubocop', require: false

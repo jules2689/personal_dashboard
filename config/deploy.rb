@@ -92,3 +92,16 @@ namespace :deploy do
   after :finishing,    :restart
   after :finishing,    :start_dashing
 end
+
+namespace :ssl do
+  desc 'renew SSL'
+  task :renew do
+    on roles(:app) do
+      within current_path do
+        rake "ssl:renew"
+        puts "Restarting nginx"
+        execute :sudo, "service nginx restart"
+      end
+    end
+  end
+end
