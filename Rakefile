@@ -5,10 +5,10 @@ environment = ENV['RACK_ENV'] || 'development'
 db = YAML.load_file('config/database.yml')[environment]
 ActiveRecord::Base.establish_connection(db)
 
-require 'bundler'
-Bundler.require
-
 namespace :assets do
+  require 'bundler'
+  Bundler.require
+
   root = File.realdirpath('.')
   sprockets = Sinatra::Application.settings.sprockets
   outpath_prefix = File.join(root, 'public', Sinatra::Application.settings.assets_prefix)
