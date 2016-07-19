@@ -7,7 +7,8 @@ ActiveRecord::Base.establish_connection(db)
 
 namespace :assets do
   require 'bundler'
-  Bundler.require
+  require 'sprockets'
+  require 'dashing'
 
   root = File.realdirpath('.')
   sprockets = Sinatra::Application.settings.sprockets
