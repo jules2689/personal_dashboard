@@ -9,6 +9,7 @@ namespace :assets do
   require 'bundler'
   require 'sprockets'
   require 'dashing'
+  require 'uglifier'
 
   root = File.realdirpath('.')
   sprockets = Sinatra::Application.settings.sprockets
